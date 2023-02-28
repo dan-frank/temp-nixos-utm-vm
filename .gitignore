@@ -1,0 +1,5 @@
+secrets/*
+result
+*.key
+.vscode
+.DS_STORE
