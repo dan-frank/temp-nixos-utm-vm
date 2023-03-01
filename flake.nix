@@ -9,6 +9,8 @@
 
   outputs = inputs@{ nixpkgs, home-manager, ... }: # inputs@
   let 
+    inherit (inputs.nixpkgs.lib) attrValues makeOverridable optionalAttrs singleton;
+
     system = "aarch64-linux";
     homeManagerStateVersion = "22.11";
     nixosStateVersion = "22.11";
