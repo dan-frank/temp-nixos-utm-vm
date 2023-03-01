@@ -47,7 +47,7 @@
             home-manager.users.${primaryUser.username} = {
               imports = attrValues self.homeManagerModules;
               home.stateVersion = homeManagerStateVersion;
-              home.user-info = config.users.primaryUser;
+              # home.user-info = config.users.primaryUser;
             };
           }
         )
