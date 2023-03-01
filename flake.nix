@@ -90,7 +90,7 @@
         # common = import ./system/common.nix;
         # packages = import ./system/packages.nix;
 
-        # users-primaryUser = import ./schema/users.nix;
+        users-primaryUser = import ./modules/users.nix;
       };
 
       homeManagerModules = {
