@@ -6,11 +6,9 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { nixpkgs, home-manager, flake-utils, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
     let 
       inherit (inputs.nixpkgs.lib) attrValues makeOverridable optionalAttrs singleton;
 
