@@ -70,9 +70,8 @@
       homeConfigurations = {
         user = home-manager.lib.homeManagerConfiguration {
           pkgs = import inputs.nixpkgs-unstable {
-            # system = "x86_64-linux";
-            inherit system;
-            inherit (nixpkgsConfig) config overlays;
+            system = "aarch64-linux";
+            inherit (nixpkgsConfig) config;
           };
           modules = attrValues self.homeManagerModules ++ singleton ({ config, ... }: {
             home.username = config.home.user-info.username;
