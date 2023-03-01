@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-nix build .#homeManagerConfigurations.zhen.activationPackage
-
-# nix build .#homeManagerConfigurations.zhen.activationPackage --show-trace
-
+nix build \
+  --extra-experimental-features nix-command \
+  --extra-experimental-features flakes \
+  .#homeManagerConfigurations.dan.activationPackage
 ./result/activate
