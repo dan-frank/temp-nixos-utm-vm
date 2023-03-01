@@ -123,6 +123,10 @@ in {
     glmark2 # benchmark
 
     # obs-studio # video/stream
+
+    # Useful CLI tools
+    ripgrep
+    tree
   ];
 
   programs.bash = {
