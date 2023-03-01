@@ -24,7 +24,6 @@
       };
 
       nixpkgsConfig = with inputs; rec {
-        inherit system;
         config = { allowUnfree = true; };
       };
 
@@ -55,8 +54,8 @@
       ];
     in {
       nixosConfigurations = rec {
-        nixos-x86 = makeOverridable nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+        nixos-arm = makeOverridable nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
           specialArgs.inputs = inputs;
           modules = nixosCommonModules ++ [
             ./configuration.nix
@@ -65,11 +64,11 @@
             }
           ];
         };
-        nixos-arm = nixos-x86.override { system = "aarch64-linux"; };
+        nixos-x86 = nixos-arm.override { system = "x86_64-linux"; };
       };
 
       homeConfigurations = {
-        dan = home-manager.lib.homeManagerConfiguration {
+        user = home-manager.lib.homeManagerConfiguration {
           pkgs = import inputs.nixpkgs-unstable {
             # system = "x86_64-linux";
             inherit system;
