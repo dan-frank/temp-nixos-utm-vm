@@ -50,7 +50,7 @@
             home-manager.users.${primaryUser.username} = {
               imports = attrValues self.homeManagerModules;
               home.stateVersion = homeManagerStateVersion;
-              home.user-info = config.users.primaryUser;
+              # home.user-info = config.users.primaryUser;
             };
           }
         )
@@ -95,16 +95,17 @@
       };
 
       homeManagerModules = {
-        home-config-files = import ./home/config-files.nix;
-        home-git = import ./home/git.nix;
-        home-packages = import ./home/packages.nix;
-        home-shells = import ./home/shells.nix;
-        home-terminal = import ./home/terminal.nix;
+        home-config = import ./home.nix;
+        # home-config-files = import ./home/config-files.nix;
+        # home-git = import ./home/git.nix;
+        # home-packages = import ./home/packages.nix;
+        # home-shells = import ./home/shells.nix;
+        # home-terminal = import ./home/terminal.nix;
 
-        home-bat = import ./home/programs/bat.nix;
-        home-neovim = import ./home/programs/neovim.nix;
-        home-sbt = import ./home/programs/sbt.nix;
-        home-vscode = import ./home/programs/vscode.nix;
+        # home-bat = import ./home/programs/bat.nix;
+        # home-neovim = import ./home/programs/neovim.nix;
+        # home-sbt = import ./home/programs/sbt.nix;
+        # home-vscode = import ./home/programs/vscode.nix;
       };
     };
 }
