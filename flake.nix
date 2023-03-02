@@ -96,7 +96,6 @@
       };
 
       homeManagerModules = {
-        # home-config = import ./home.nix;
         home-config-files = import ./home/config-files.nix;
         home-git = import ./home/git.nix;
         home-packages = import ./home/packages.nix;
