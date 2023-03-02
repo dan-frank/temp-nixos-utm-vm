@@ -13,7 +13,8 @@ in
   home.sessionVariables = {
     EDITOR = "${pkgs.neovim}/bin/nvim";
     VISUAL = "${pkgs.neovim}/bin/nvim";
-    EMAIL = "${user-info.email}";
+    # EMAIL = "${user-info.email}";
+    EMAIL = "dan.frank.lucas@gmail.com";
     PAGER = "${pkgs.less}/bin/less";
     CLICOLOR = 1;
     PATH = "$PATH:$HOME/.local/bin:$HOME/.tfenv/bin";

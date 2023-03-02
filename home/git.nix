@@ -6,8 +6,10 @@ in
   programs.git = {
     enable = true;
     package = pkgs.git;
-    userName = user-info.fullName;
-    userEmail = user-info.email;
+    # userName = user-info.fullName;
+    # userEmail = user-info.email;
+    userName = "Daniel Lucas";
+    userEmail = "dan.frank.lucas@gmail.com";
     extraConfig = {
       color.ui = "auto";
       core = {
@@ -17,7 +19,8 @@ in
         precomposeunicode = true;
         whitespace = "trailing-space,space-before-tab";
       };
-      github.user = user-info.github;
+      # github.user = user-info.github;
+      github.user = "dan-frank";
       pull.rebase = "true";
       credential.helper = "store";
     };
