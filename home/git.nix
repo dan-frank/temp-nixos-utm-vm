@@ -5,7 +5,7 @@ in
 {
   programs.git = {
     enable = true;
-    package = pkgs.pkgs-stable.git;
+    package = pkgs.git;
     userName = user-info.fullName;
     userEmail = user-info.email;
     extraConfig = {
