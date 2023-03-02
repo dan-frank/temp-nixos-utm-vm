@@ -63,7 +63,7 @@
           system = "aarch64-linux";
           specialArgs.inputs = inputs;
           modules = nixosCommonModules ++ [
-            ./system/nixos/host-dan.nix
+            ./system/nixos/host-dan
             {
               users.primaryUser = primaryUserInfo;
             }
