@@ -19,12 +19,14 @@
       homeManagerStateVersion = "22.11";
       nixosStateVersion = "22.11";
 
-      primaryUserInfo = {
+      userDan = {
         username = "dan";
         fullName = "Daniel Lucas";
         email = "dan.frank.lucas@gmail.com";
         github = "dan-frank";
       };
+
+      primaryUserInfo = userDan;
 
       nixpkgsConfig = with inputs; rec {
         config = { allowUnfree = true; };
@@ -61,7 +63,7 @@
           system = "aarch64-linux";
           specialArgs.inputs = inputs;
           modules = nixosCommonModules ++ [
-            ./configuration.nix
+            ./system/nixos/host-dan.nix
             {
               users.primaryUser = primaryUserInfo;
             }
