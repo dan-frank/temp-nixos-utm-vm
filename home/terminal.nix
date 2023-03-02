@@ -129,7 +129,7 @@ in
       # shell.program = "${pkgs.zsh}/bin/zsh";
       window = {
         dynamic_title = false;
-        decorations = "Buttonless"; # Full | Transparent | Buttonless | None
+        decorations = "Full"; # Full | Transparent | Buttonless | None
         opacity = 1.00;
         padding = {
           x = 10;
