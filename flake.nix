@@ -43,7 +43,7 @@
               isNormalUser = true;
               isSystemUser = false;
               initialPassword = "helloworld";
-              extraGroups = [ "wheel" ];
+              extraGroups = [ "networkmanager" "wheel" ];
               shell = pkgs.zsh;
             };
             home-manager.useGlobalPkgs = true;
