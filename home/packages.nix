@@ -2,6 +2,8 @@
 let
   link = config.lib.file.mkOutOfStoreSymlink;
 in {
+  nixpkgs.config.allowUnfree = true;
+  
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
@@ -76,6 +78,10 @@ in {
   home.file = {
     ".hushlogin".text = "";
     ".p10k.zsh".source = link ./../dotfiles/p10k.zsh;
+  };
+
+  home.sessionVariables = {
+    HAVE_NT_DATA_SCIENCE_CREDENTIALS = 1;
   };
 }
 

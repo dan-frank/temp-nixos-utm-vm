@@ -5,11 +5,12 @@ in
 {
   programs.git = {
     enable = true;
-    package = pkgs.git;
+    package = pkgs.gitAndTools.gitFull;
     # userName = user-info.fullName;
     # userEmail = user-info.email;
     userName = "Daniel Lucas";
     userEmail = "dan.frank.lucas@gmail.com";
+    ignores = [ ".metals" ".bloop" ];
     extraConfig = {
       color.ui = "auto";
       core = {

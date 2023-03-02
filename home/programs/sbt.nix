@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }:
-{
+let
+  sbt-overlay = self: super: {
+    sbt = super.sbt.override { jre = super.jdk11; };
+  };
+in {
   programs.sbt = {
     enable = true;
     package = pkgs.sbt;
