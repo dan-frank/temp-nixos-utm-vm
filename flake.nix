@@ -89,8 +89,8 @@
       nixosModules = {
         stateVersion = { system.stateVersion = nixosStateVersion; };
 
-        # common = import ./system/common.nix;
-        # packages = import ./system/packages.nix;
+        common = import ./system/common.nix;
+        packages = import ./system/packages.nix;
 
         users-primaryUser = import ./modules/users.nix;
       };
