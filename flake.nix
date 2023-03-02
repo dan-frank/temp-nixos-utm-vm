@@ -68,7 +68,7 @@
       };
 
       homeConfigurations = {
-        user = home-manager.lib.homeManagerConfiguration {
+        dan = home-manager.lib.homeManagerConfiguration {
           pkgs = import inputs.nixpkgs-unstable {
             system = "aarch64-linux";
             inherit (nixpkgsConfig) config;

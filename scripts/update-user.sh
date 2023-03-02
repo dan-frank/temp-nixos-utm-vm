@@ -3,5 +3,5 @@
 nix build \
   --extra-experimental-features nix-command \
   --extra-experimental-features flakes \
-  .#homeManagerConfigurations.user.activationPackage
+  .#homeManagerConfigurations.dan.activationPackage
 ./result/activate
