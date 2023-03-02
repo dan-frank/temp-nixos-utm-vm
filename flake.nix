@@ -6,13 +6,16 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, ... } @ inputs:
     let 
       inherit (inputs.nixpkgs.lib) attrValues makeOverridable optionalAttrs singleton;
 
       system = "aarch64-linux";
+
       homeManagerStateVersion = "22.11";
       nixosStateVersion = "22.11";
 
@@ -47,7 +50,7 @@
             home-manager.users.${primaryUser.username} = {
               imports = attrValues self.homeManagerModules;
               home.stateVersion = homeManagerStateVersion;
-              # home.user-info = config.users.primaryUser;
+              home.user-info = config.users.primaryUser;
             };
           }
         )
@@ -69,7 +72,7 @@
 
       homeConfigurations = {
         dan = home-manager.lib.homeManagerConfiguration {
-          pkgs = import inputs.nixpkgs-unstable {
+          pkgs = import inputs.nixpkgs {
             system = "aarch64-linux";
             inherit (nixpkgsConfig) config;
           };
