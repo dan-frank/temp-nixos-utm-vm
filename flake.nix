@@ -78,13 +78,12 @@
             system = "aarch64-linux";
             inherit (nixpkgsConfig) config;
           };
-          modules = attrValues self.homeManagerModules;
-          # ++ singleton ({ config, ... }: {
-          #   home.username = config.home.user-info.username;
-          #   home.homeDirectory = "/home/${config.home.username}";
-          #   home.stateVersion = homeManagerStateVersion;
-          #   home.user-info = primaryUserInfo;
-          # });
+          modules = attrValues self.homeManagerModules ++ singleton ({ config, ... }: {
+            home.username = config.home.user-info.username;
+            home.homeDirectory = "/home/${config.home.username}";
+            home.stateVersion = homeManagerStateVersion;
+            #home.user-info = primaryUserInfo;
+          });
         };
       };
 
