@@ -82,7 +82,7 @@
             home.username = config.home.user-info.username;
             home.homeDirectory = "/home/${config.home.username}";
             home.stateVersion = homeManagerStateVersion;
-            #home.user-info = primaryUserInfo;
+            home.user-info = primaryUserInfo;
           });
         };
       };
