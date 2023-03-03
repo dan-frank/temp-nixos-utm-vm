@@ -137,5 +137,50 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
-}
 
+  users.users.dan = {
+    isNormalUser = true;
+    description = "Daniel Lucas";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [
+      firefox
+    #  thunderbird
+    ];
+  };
+  users.users.zhen = {
+     isNormalUser = true;
+     extraGroups = [ "wheel" ]; # Enable 'sudo' for the user.
+
+     openssh.authorizedKeys.keys = [
+       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLY+TrKSLyPIAFM4qjVJQOMC+7wjrovNc6ylsml+dyXHjo+KA1cADf2f8lH+PzRDGYaNHOqBKPVmpnXnQef+HdEfZr+gfB91iMLFQH/sFY7vdDJ4rmuShl1n7XYhsWI+/dakB3qrEmzl8uBiyA8WNf1uOy/dAzQQTy+wwLGA8r9I+vRu98UYffgu4cY8jkwxLjZvzzCKcCoWxVKYx4jD7K9uotuV+k1fksWzbkmgdmOLtiG3p2GhlavxG1ztH7lmvdu1VI/ydH9gu3p3q01V3YMLwvApMv2p22fsqPPu8GUkgxnTVjHgEZ/mmEN+OZSgUNjzdUFQif6mlUgC7Wx5WN"
+       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCn/87gO7nwyVgjp9TxhhKcngbnP+Tuz5s8nGYU0h2B3655e4FyHI5sK2MdCz6I5HyPg5ttLS8hGCH8d7T9GwpUIbEbmPHgIH9URcNeQvG+Zc3BbrTmAqHQN7wiM82dCI3tfA6qrTQar97Qtfx/LPzHNv7GUMnT6eFcbJZ9WHZG+Q/DgDYTtCM/RDJm/E4gZbeupH4IQ0oAtInjhDgKjA8Wkym239EsNqpdJEDUdrCGHMavD9hPZREncfNgEFaf7GNh1z259ZhdI7b/b102tO3LD0KgbAOpw00LRXgy68buxQJI9RuhPncpY2EJvLZIF97GUnx7fml3pzp4UFENHmQvOzjcuOEcb0zsrwzD3332f1OuUwJ6v1jayMTzXfil2SKqItzDscXN4EqyiHndXpoio3CKPVZT51dQU9VQkAdzkgSuvbmgeRzBQHKEHIiKL3WEcv8PrB1Wx5BwpeKxGoFn5qE1O1OU5sMk37qzmNSlx7bd46NrkdXiMoE3Z+lwUCbib4hpTQN/YFddwNQ2lFD6iLMXUcNsN4DxV/fA4JBwCSjHngIn95Z5UFA8zSSE6DM8Tpml6Ulgpz7bo37zND/MbKcd0Ncv87E23ET2jk6GqDGO2r8VpIBwNg+rCmIdd6wGGs7gonUN8UFOFVQlKjWV4DP3iddeSUDEHHd4kj9IXQ== zhenhaolee@gmail.com"
+       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDNoHIzSTioWmYu89667bXzWLLQtBoPAPxQ10/JnXXfW9NELp8+Tg9WUPa8IN0GwVVyBIDaHkTclP3O0HdTKK2BCMehy/NW1wFm6VyNjoJ7sYrPmaaZ/F1KeOcBiNCJ7qa47zFnMmYAxYIV2TJh+UtycCGBBXr+qsUyWTLDXZ6Z7cmq24fIOufaUYQmfSyuXssDasMW5/M2x0WTuWK6QLBuYPVNla2RG0Amau2GpPRPoS6n3tHH7Ei0jMVJrf3VY9FFDi6DspyhLsSm58B4bax3WRZm25cPKakO4hA74Kf0eLCWwnvym3z6Q8IPIElxrYi/P4SX6pDNbB6rbq/5iF84NI7XG8QbH1IJ2CXCYWvgOE/g6ADAz0Q05GTTARjfwqP1K6CCv69qqk2rCYviokq3bl3fTv7kMOQH74pLcd3Kaf8Rl4FI09zxtFJ5XGWCLxyxK2HX0qhFs1RUWuEmomrEochsr3fOAcmpjIqLn5ViIH3gsbEb+iW4/2u6hbgEjBaHgxO/Y4eJa4CX6mZkmWtUJKDv54zvEIEA2V1Oqr8kw6QQcKl+J+3TxJKRoMqKHjRMv7a3inMcJEQscz5qCx8E7Al+nyzK/OB/Ry0D4ck/7Wy4ZhoJ6gzfb+ozV/sr9ibFAh1N/98oy3f4IfTsq/6/sCJKdmj1N0HNDXXOvG/YQw== zhenhaolee@gmail.com"
+       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzJslrYMSPYHQsUvDh6Bl1lGGKJxNyCdRcMcECeqN9hJ4C6gU5ANTKpOlc1khXp9RuqMnexDvV/l+/qMY2+2bRDVuLCdx0fjs2gya35YrQoPW1wSwo+v+hiwr/oj6H0rNv8JHHIE4iCFaU7PIvvjNKP57Koj8TaU5yebeM7MGnj/nq9YrHo5T7qD+PqUDwrWZ6iYm1pDvcBK5c0UoCspZeIJvsxx5vSeqZO2xkCAI0+8pvGB3gIwDenDc+itVYbZnONU4LuYdsHMqegNry+xK9wmS1tVx0AdXHOOhpPSEoSVdsSbWIaXhJnmlr4qfCukqA0EzIlBhv66xaJfvtYboVcf5OHdYOHq7yYBb0Dg94lmJp1BgHhE8nc7OJVZLaVgRH4bpLNWiVjsmX+AFzXt2Cmst98KeetRnz9SNtymuouoCHm8jKbda2fSZPcjA2qrofPkU/wmPP09hp86JR85sOZqrU1SC3W5y2Czj7kcHNpe5Q6bsIx80sgphwVeIenmc= zhen@Zhenhaos-MacBook-Pro.local"
+     ];
+  };
+
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+  };
+  
+  networking.firewall.allowedUDPPorts = [ 51820 ];
+  networking.firewall.allowedTCPPorts = [ 9005 9007 ];
+
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      address = [ "10.100.0.5/24" ];
+      privateKeyFile = "/home/zhen/wireguard-keys/private";
+
+      peers = [
+        {
+          publicKey = "Cq1XjSaGaa4kL5uXKrxz+j6Y4yEjshkUVbMSlFFi3mM=";
+          # presharedKeyFile = "/root/wireguard-keys/preshared_from_peer0_key";
+          allowedIPs = [ "10.100.0.1/24" "192.168.1.0/23" "::/0" ];
+          endpoint = "77.60.203.42:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
+}

@@ -26,7 +26,7 @@
         github = "dan-frank";
       };
 
-      primaryUserInfo = userDan;
+      # primaryUserInfo = userDan;
 
       nixpkgsConfig = with inputs; rec {
         config = { allowUnfree = true; };
@@ -59,17 +59,21 @@
       ];
     in {
       nixosConfigurations = rec {
-        nixos-arm = makeOverridable nixpkgs.lib.nixosSystem {
+        nixos-dan = makeOverridable nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           specialArgs.inputs = inputs;
-          modules = nixosCommonModules ++ [
+          modules = [
             ./system/nixos/host-dan
             {
-              users.primaryUser = primaryUserInfo;
+              system.stateVersion = nixosStateVersion;
+              users.primaryUser = userDan;
             }
+            ./system/common.nix
+            ./system/packages.nix
+            ./modules/users.nix
           ];
         };
-        nixos-x86 = nixos-arm.override { system = "x86_64-linux"; };
+        # nixos-x86 = nixos-arm.override { system = "x86_64-linux"; };
       };
 
       homeManagerConfigurations = {
@@ -78,35 +82,46 @@
             system = "aarch64-linux";
             inherit (nixpkgsConfig) config;
           };
-          modules = attrValues self.homeManagerModules ++ singleton ({ config, ... }: {
+          modules = [
+            ./home/config-files.nix
+            ./home/git.nix
+            ./home/packages.nix
+            ./home/shells.nix
+            ./home/terminal.nix
+
+            ./home/programs/bat.nix
+            ./home/programs/neovim.nix
+            ./home/programs/sbt.nix
+            ./home/programs/vscode.nix
+          ] ++ singleton ({ config, ... }: {
             home.username = config.home.user-info.username;
             home.homeDirectory = "/home/${config.home.username}";
             home.stateVersion = homeManagerStateVersion;
-            home.user-info = primaryUserInfo;
+            home.user-info = userDan;
           });
         };
       };
 
-      nixosModules = {
-        stateVersion = { system.stateVersion = nixosStateVersion; };
+      # nixosModules = {
+      #   stateVersion = { system.stateVersion = nixosStateVersion; };
 
-        common = import ./system/common.nix;
-        packages = import ./system/packages.nix;
+      #   common = import ./system/common.nix;
+      #   packages = import ./system/packages.nix;
 
-        users-primaryUser = import ./modules/users.nix;
-      };
+      #   users-primaryUser = import ./modules/users.nix;
+      # };
 
-      homeManagerModules = {
-        home-config-files = import ./home/config-files.nix;
-        home-git = import ./home/git.nix;
-        home-packages = import ./home/packages.nix;
-        home-shells = import ./home/shells.nix;
-        home-terminal = import ./home/terminal.nix;
+      # homeManagerModules = {
+      #   home-config-files = import ./home/config-files.nix;
+      #   home-git = import ./home/git.nix;
+      #   home-packages = import ./home/packages.nix;
+      #   home-shells = import ./home/shells.nix;
+      #   home-terminal = import ./home/terminal.nix;
 
-        home-bat = import ./home/programs/bat.nix;
-        home-neovim = import ./home/programs/neovim.nix;
-        home-sbt = import ./home/programs/sbt.nix;
-        home-vscode = import ./home/programs/vscode.nix;
-      };
+      #   home-bat = import ./home/programs/bat.nix;
+      #   home-neovim = import ./home/programs/neovim.nix;
+      #   home-sbt = import ./home/programs/sbt.nix;
+      #   home-vscode = import ./home/programs/vscode.nix;
+      # };
     };
 }
