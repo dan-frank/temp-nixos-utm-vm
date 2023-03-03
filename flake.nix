@@ -93,12 +93,14 @@
             ./home/programs/neovim.nix
             ./home/programs/sbt.nix
             ./home/programs/vscode.nix
-          ] ++ singleton ({ config, ... }: {
-            home.username = config.home.user-info.username;
-            home.homeDirectory = "/home/${config.home.username}";
-            home.stateVersion = homeManagerStateVersion;
-            home.user-info = userDan;
-          });
+            
+            {
+              home.username = userDan.username;
+              home.homeDirectory = "/home/${userDan.username}";
+              home.stateVersion = homeManagerStateVersion;
+              # home.user-info = userDan;
+            }
+          ];
         };
       };
 
