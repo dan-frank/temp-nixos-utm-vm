@@ -82,18 +82,7 @@
             system = "aarch64-linux";
             inherit (nixpkgsConfig) config;
           };
-          modules = [
-            ./home/config-files.nix
-            ./home/git.nix
-            ./home/packages.nix
-            ./home/shells.nix
-            ./home/terminal.nix
-
-            ./home/programs/bat.nix
-            ./home/programs/neovim.nix
-            ./home/programs/sbt.nix
-            ./home/programs/vscode.nix
-            
+          modules = attrValues self.homeManagerModules ++ [
             {
               home.username = userDan.username;
               home.homeDirectory = "/home/${userDan.username}";
@@ -113,17 +102,17 @@
       #   users-primaryUser = import ./modules/users.nix;
       # };
 
-      # homeManagerModules = {
-      #   home-config-files = import ./home/config-files.nix;
-      #   home-git = import ./home/git.nix;
-      #   home-packages = import ./home/packages.nix;
-      #   home-shells = import ./home/shells.nix;
-      #   home-terminal = import ./home/terminal.nix;
+      homeManagerModules = {
+        home-config-files = import ./home/config-files.nix;
+        home-git = import ./home/git.nix;
+        home-packages = import ./home/packages.nix;
+        home-shells = import ./home/shells.nix;
+        home-terminal = import ./home/terminal.nix;
 
-      #   home-bat = import ./home/programs/bat.nix;
-      #   home-neovim = import ./home/programs/neovim.nix;
-      #   home-sbt = import ./home/programs/sbt.nix;
-      #   home-vscode = import ./home/programs/vscode.nix;
-      # };
+        home-bat = import ./home/programs/bat.nix;
+        home-neovim = import ./home/programs/neovim.nix;
+        home-sbt = import ./home/programs/sbt.nix;
+        home-vscode = import ./home/programs/vscode.nix;
+      };
     };
 }

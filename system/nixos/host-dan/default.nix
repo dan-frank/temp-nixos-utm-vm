@@ -165,7 +165,7 @@
   };
   
   networking.firewall.allowedUDPPorts = [ 51820 ];
-  networking.firewall.allowedTCPPorts = [ 9005 9007 ];
+  networking.firewall.allowedTCPPorts = [ 9001 9002 9003 9004 9005 9006 9007 9008 9009 ];
 
   networking.wg-quick.interfaces = {
     wg0 = {
