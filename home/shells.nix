@@ -72,6 +72,13 @@ in
     myfonts = "atsutil fonts -list";
   };
 
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      eval "$(direnv hook bash)"
+    '';
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
