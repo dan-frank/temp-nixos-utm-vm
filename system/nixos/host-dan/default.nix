@@ -144,7 +144,9 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-    #  thunderbird
+    ];
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC+Xbgr8Q81WRd6t1oz1PNjhH+Yt7nccK0cfCXdQgNuuUWtaKDgaTEx5kfUUZDQndckw7gALs7YaifoKzgMmshp34hNB5m/cjNUj4bxYtvXjC3EsqrtYR6AMshBD73FFSP0lNsRW/teKPZ+6uSm74oJUFIcw8XpakbcbxY5g949bV5qr/qaENJtgVZuMzEkS73WGJaQ6AonsgdA4MnftR0gAdyEFZ9dyI3zhqePuvUgLINZejeACv3utYRWSv3/hwLMfVWbvuFGn+2j7Xlh+coeI/5jycHEv/KoSbVSuYTKsVxjFO9yU1FrJ9+1dgcDBuK7+ulvB4WJnQUF+RS6z8fX4PLldF2rKdtjwRVc5HmM6redSFZg6IM0V8L4g9XL4CiEE1d/glAUsfELYhJSHqzP0emoHufLKkpkpRNJBbCHIwLor8aXWhMltVah3A3lcEijJpS5eag/DEjev5QfbnplycBAmtQdEPmZEX/5qtnS7m9lnfo+3zKH3g3EOqUjetcqsWrIGa/qew+73TbB0CVAhWbp9MDQ0aEwaVrMCLGsfVZ/+/IRBzFm2E8IaobEmqCx6ARtF3+cv7sqUjOKOCEqD4HFHkHwzrjM82BGRL7PXBdBM3OVOh3R/UAodfWaNKRWZK/dsTVPP5Btnh+Z//+rYD9Qy4Xx5zqklUHM0008DQ== dan@Daniels-MacBook-Pro.local"
     ];
   };
   users.users.zhen = {
@@ -162,15 +164,16 @@
   services.openssh = {
     enable = true;
     ports = [ 22 ];
+    settings.PermitRootLogin = "yes";
   };
   
   networking.firewall.allowedUDPPorts = [ 51820 ];
-  networking.firewall.allowedTCPPorts = [ 9001 9002 9003 9004 9005 9006 9007 9008 9009 ];
+  networking.firewall.allowedTCPPorts = [ 22 9001 9002 9003 9004 9005 9006 9007 9008 9009 ];
 
   networking.wg-quick.interfaces = {
     wg0 = {
       address = [ "10.100.0.5/24" ];
-      privateKeyFile = "/home/zhen/wireguard-keys/private";
+      privateKeyFile = "/home/dan/wireguard-keys/private";
 
       peers = [
         {
