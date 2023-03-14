@@ -11,15 +11,11 @@
 
   programs.vscode = {
     enable = true;
-    # package = pkgs.vscodium;  #pkgs.vscode.fhs;
+    # package = pkgs.vscodium; #pkgs.vscode.fhs;
     userSettings = {
-      "window.zoomLevel" = 1;
-      "git.autofetch" = false;
       "diffEditor.ignoreTrimWhitespace" = true;
-      "gitlens.views.lineHistory.enabled" = true;
-      "gitlens.advanced.messages" = {
-        "suppressFileNotUnderSourceControlWarning" = true;
-      };
+      "editor.bracketPairColorization.enabled" = true;
+      "editor.guides.bracketPairs" = true;
       "files.exclude" = {
         "**/.classpath" = true;
         "**/.project" = true;
@@ -31,43 +27,68 @@
         "**/.metals" = true;
         "**/.ammonite" = true;
       };
-      # "remote.SSH.defaultExtensions" =
-      #   [ "eamodio.gitlens" "scalameta.metals" "ms-python.python" ];
-      # "metals.javaHome" = "/home/dan/.nix-profile";
-      "metals.javaHome" = "/home/dan/.nix-profile";
+      "git.autofetch" = false;
+      "gitlens.advanced.messages" = {
+        "suppressFileNotUnderSourceControlWarning" = true;
+      };
       "java.semanticHighlighting.enabled" = true;
-      "python.jediEnabled" = true;
-      "python.linting.pylintEnabled" = false;
-      "python.linting.enabled" = true;
-      "python.linting.flake8Enabled" = false;
+      "metals.javaHome" = "${pkgs.jdk11}";
+      "remote.SSH.defaultExtensions" = [
+        "bbenoist.nix"
+        # "bierner.emojisense"
+        "bierner.markdown-checkbox"
+        "bierner.markdown-emoji"
+        "bradlc.vscode-tailwindcss"
+        "eamodio.gitlens"
+        # "file-icons.file-icons"
+        "gencer.html-slim-scss-css-class-completion"
+        "github.github-vscode-theme"
+        "gruntfuggly.todo-tree"
+        "matklad.rust-analyzer"
+        "mhutchie.git-graph"
+        "ms-vscode-remote.remote-ssh"
+        "naumovs.color-highlight"
+        "oderwat.indent-rainbow"
+        "pkief.material-icon-theme"
+        "scala-lang.scala"
+        "scalameta.metals"
+        "shardulm94.trailing-spaces"
+        "tonybaloney.vscode-pets"
+        "usernamehw.errorlens"
+        "vscodevim.vim"
+      ];
+      "window.zoomLevel" = 1.85;
+      "workbench.colorTheme" = "GitHub Dark";
+      "workbench.iconTheme" = "material-icon-theme";
     };
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
-      # ms-python.python
+      # bierner.emojisense
+      bierner.markdown-checkbox
+      bierner.markdown-emoji
+      bradlc.vscode-tailwindcss
+      eamodio.gitlens
+      # file-icons.file-icons
+      gencer.html-slim-scss-css-class-completion
+      github.github-vscode-theme
+      gruntfuggly.todo-tree
       matklad.rust-analyzer
-      # scala-lang.scala
-      # scalameta.metals
-      # ms-vsliveshare.vsliveshare
+      mhutchie.git-graph
       ms-vscode-remote.remote-ssh
+      naumovs.color-highlight
+      oderwat.indent-rainbow
+      pkief.material-icon-theme
+      scala-lang.scala
+      scalameta.metals
+      shardulm94.trailing-spaces
+      usernamehw.errorlens
+      vscodevim.vim
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      # {
-      #   name = "Nix";
-      #   publisher = "bbenoist";
-      #   version = "1.0.1";
-      #   sha256 = "0zd0n9f5z1f0ckzfjr38xw2zzmcxg1gjrava7yahg5cvdcw6l35b";
-      # }
       {
-        name = "metals";
-        publisher = "scalameta";
-        version = "1.11.0";
-        sha256 =
-          "zrWgUr/sndh6WUpnMMYoWWrH4t56Vb3hhp2Z8EB9iig=";
-      }
-      {
-        name = "scala";
-        publisher = "scala-lang";
-        version = "0.5.3";
-        sha256 = "0isw8jh845hj2fw7my1i19b710v3m5qsjy2faydb529ssdqv463p";
+        name = "vscode-pets";
+        publisher = "tonybaloney";
+        version = "1.2.2";
+        sha256 = "0zd0n9f5z1f0ckzfjr38xw2zzmcxg1gjrava7yahg5cvdcw6l35b";
       }
     ];
   };
