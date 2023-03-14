@@ -11,8 +11,8 @@ let
 in
 {
   home.sessionVariables = {
-    EDITOR = "${pkgs.neovim}/bin/nvim";
-    VISUAL = "${pkgs.neovim}/bin/nvim";
+    EDITOR = "vim";
+    VISUAL = "vim";
     # EMAIL = "${user-info.email}";
     EMAIL = "dan.frank.lucas@gmail.com";
     PAGER = "${pkgs.less}/bin/less";
@@ -54,28 +54,13 @@ in
     "..." = "cd ../..";
     "...." = "cd ../../..";
     "....." = "cd ../../../..";
-
-    # Name shortening
-    docc = "docker-compose";
-
-    # Get public key
-    pubkey = "pbcopy < ~/.ssh/id_rsa.pub";
-
-    # Natural Transformation
-    ntssh = "ssh daniel@ntworkstation.hopto.org -p 26";
-    ntlocalhost = "open http://ntworkstation.hopto.org:9005";
-  } // lib.optionalAttrs pkgs.stdenv.isDarwin {
-    # Homebrew - TODO Remove / integrate into nix-darwin
-    brewuu = "brew update; brew upgrade";
-
-    # What fonts?
-    myfonts = "atsutil fonts -list";
   };
 
   programs.bash = {
     enable = true;
     initExtra = ''
       eval "$(direnv hook bash)"
+      eval $(dircolors -b ${LS_COLORS}/LS_COLORS)
     '';
   };
 
