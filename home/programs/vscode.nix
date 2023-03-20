@@ -32,7 +32,7 @@
         "suppressFileNotUnderSourceControlWarning" = true;
       };
       "java.semanticHighlighting.enabled" = true;
-      "metals.javaHome" = "${pkgs.jdk11}";
+      "metals.javaHome" = "${pkgs.jdk}";
       "remote.SSH.defaultExtensions" = [
         "bbenoist.nix"
         # "bierner.emojisense"
@@ -57,7 +57,7 @@
         "usernamehw.errorlens"
         "vscodevim.vim"
       ];
-      "window.zoomLevel" = 1.85;
+      "window.zoomLevel" = 3;
       "workbench.colorTheme" = "GitHub Dark";
       "workbench.iconTheme" = "material-icon-theme";
     };

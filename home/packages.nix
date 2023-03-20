@@ -28,6 +28,7 @@ in {
     # Dev
     # glibc
     # openjdk11 # Java
+    jdk
     # jetbrains.idea-community
     # sbt
     # coursier
